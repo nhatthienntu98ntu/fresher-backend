@@ -1,0 +1,56 @@
+## Platfox Basic Project
+
+## Project 
+
+ Ứng dụng đặt cơm trưa cho team công ty
+
+## Description
+- Ứng dụng web sử dụng Vuejs - Vuex - Typescript - Nodejs - Rocket Api
+
+- Ứng dụng giúp quản lý và đặt cơm trưa cho các thành viên.
+
+- Người Quản lý có thể thêm danh sách các món ăn hàng ngày, 
+chọn các món ăn sẽ được order trong ngày đó, danh sách món ăn sau khi được chọn 
+sẽ được thông báo lên group chat chung trên rocket.chat
+
+- Danh sách sau khi được chọn sẽ gửi thông báo cho các thành viên, các thành viên khác 
+sẽ nhận được thông báo đặt cơm và xác nhận có đặt cơm.
+
+- Các thành viên khác có thể thấy được danh sách món ăn trên trang chủ.
+- Khi mỗi thành viên chọn món ăn, món ăn đó sẽ được thông báo lên group chat chung trên rocket.chat
+- Hệ thống tự động gửi thông báo nhắc đặt cơm hàng ngày vào khoảng thời gian cố định.
+- Người quản lý có thể xem danh sách các thành viên đã đặt cơm, thống kê tổng hợp số lượng các món ăn được đặt
+
+## Requirement 
+
+- Ứng dụng web đơn giản giúp cho các thành viên order cơm.
+- Quản lý user
+- Quản lý thực đơn hàng ngày
+- Post notification lên rocket.chat thông qua rocketApi
+
+## Project structures 
+- Frontend: Vuejs + Vuex + Typescript 
+- Api: Axios, RocketApi
+- Backend: Nodejs + Mongodb + MongoOse + Typescript
+
+MIT License
+
+Copyright (c) 2020 Platfox
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
