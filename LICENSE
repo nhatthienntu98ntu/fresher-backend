@@ -21,6 +21,8 @@ sẽ nhận được thông báo đặt cơm và xác nhận có đặt cơm.
 - Hệ thống tự động gửi thông báo nhắc đặt cơm hàng ngày vào khoảng thời gian cố định.
 - Người quản lý có thể xem danh sách các thành viên đã đặt cơm, thống kê tổng hợp số lượng các món ăn được đặt
 
+- Ứng dụng có thể mở rộng để sử dụng cho các mực đích khác, như đặt cơm, đặt nước, đặt đồ ăn, đặt đồ ship vv...
+
 ## Requirement 
 
 - Ứng dụng web đơn giản giúp cho các thành viên order cơm.
