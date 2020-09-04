@@ -1,0 +1,24 @@
+{
+  "name": "pics",
+  "version": "1.0.0",
+  "description": "The Platfox Integrated Communication System",
+  "main": "index.js",
+  "repository": "git@gitlab.com:shopiaz.net/platfox-dev-fresher.git",
+  "author": "Kevin",
+  "license": "MIT",
+  "private": true,
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ]
+  },
+  "scripts": {
+    "be-start": "yarn workspace @app/backend run start",
+    "fe-build": "yarn workspace @app/frontend run build",
+    "fe-lint": "yarn workspace @app/frontend run lint",
+    "fe-start": "yarn workspace @app/frontend run serve",
+    "fe-test-unit": "yarn workspace @app/frontend run test:unit",
+    "fe-test-e2e": "yarn workspace @app/frontend run test:e2e"
+  },
+  "dependencies": {}
+}
