@@ -1,0 +1,15 @@
+{
+    "type": "module",
+    "name": "@app/database",
+    "version": "1.0.0",
+    "description": "The Platfox Integrated Communication System - database",
+    "author": "Kevin",
+    "license": "MIT",
+    "private": true,
+    "devDependencies": {
+        "bluebird": "3.7.2",
+        "dotenv": "8.2.0",
+        "mongodb": "3.6.1",
+        "uuid": "^8.3.0"
+    }
+}
