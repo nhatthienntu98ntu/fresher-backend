@@ -48,7 +48,11 @@ export const getAllUserService = async () => {
 };
 
 export const signupUserService = async (userSignUp: IUser) => {
-    const user = UserModel.find({ email: userSignUp.email });
+    const user = await UserModel.find({ email: userSignUp.email });
+
+    if (user.length >= 1) {
+        throw new Error('Email exists');
+    }
 };
 
 UserModel.find({ email: req.body.email })
