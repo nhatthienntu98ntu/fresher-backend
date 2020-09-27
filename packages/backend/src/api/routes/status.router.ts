@@ -11,11 +11,32 @@ router.get(
     StatusController.getAllStatusController
 );
 
-router.post(
-    '/',
+router.get(
+    '/:_id',
     // AuthMiddleware.checkToken,
     // AuthMiddleware.checkPermission(['Read']),
-    StatusController.createStatusController
+    StatusController.getStatusByIdController
+);
+
+router.post(
+    '/addStatus',
+    // AuthMiddleware.checkToken,
+    // AuthMiddleware.checkPermission(['Read']),
+    StatusController.addStatusController
+);
+
+router.post(
+    '/updateStatus',
+    // AuthMiddleware.checkToken,
+    // AuthMiddleware.checkPermission(['Read']),
+    StatusController.updateStatusController
+);
+
+router.delete(
+    '/deleteStatus',
+    // AuthMiddleware.checkToken,
+    // AuthMiddleware.checkPermission(['Read']),
+    StatusController.deleteStatusController
 );
 
 export default router;

@@ -1,8 +1,23 @@
 import { Router } from 'express';
 import { AuthMiddleware } from '../../middlewares';
+import userModel from '../../models/user.model';
 import { UserController } from '../controllers';
+import { generateToken } from '../../utils/generateToken';
 
 const router = Router();
+
+router.post(
+    '/signin', // AuthMiddleware.checkToken,
+    // AuthMiddleware.checkPermission(['Read']),
+    UserController.loginUserController
+);
+
+router.post(
+    '/signup',
+    // AuthMiddleware.checkToken,
+    // AuthMiddleware.checkPermission(['Create']),
+    UserController.signupUserController
+);
 
 router.get(
     '/',
@@ -18,22 +33,15 @@ router.get(
     UserController.getOneUserController
 );
 
-router.post(
-    '/',
-    // AuthMiddleware.checkToken,
-    // AuthMiddleware.checkPermission(['Create']),
-    UserController.cretaeUserController
-);
-
 router.put(
-    '/:id',
+    '/update',
     // AuthMiddleware.checkToken,
     // AuthMiddleware.checkPermission(['Create']),
-    UserController.editUserController
+    UserController.updateUserController
 );
 
 router.post(
-    '/:id/disable',
+    '/disable/:id',
     // AuthMiddleware.checkToken,
     // AuthMiddleware.checkPermission(['Disable']),
     UserController.disableUserController

@@ -2,7 +2,13 @@ import { model, Schema } from 'mongoose';
 import { IUser } from '../interfaces';
 
 const userSchema = new Schema({
-    email: { type: String, required: true, default: null },
+    email: {
+        type: String,
+        required: true,
+        unique: true,
+        lowercase: true,
+        default: null,
+    },
     password: { type: String, required: true, default: null },
     firstName: { type: String, required: true, default: null },
     lastName: { type: String, required: true, default: null },
@@ -10,7 +16,7 @@ const userSchema = new Schema({
     gender: { type: Boolean, required: true, default: null },
     birthday: { type: Date, required: true, default: null },
     phones: [{ type: String, required: true, default: [] }],
-    descriptionBlocked: { type: String, required: true, default: '' },
+    descriptionBlocked: { type: String, required: true, default: null },
     groupRoleIds: [
         { type: String, required: true, default: [], ref: 'GroupRoles' },
     ],
@@ -20,8 +26,8 @@ const userSchema = new Schema({
     pollResponseIds: [
         { type: String, required: false, default: [], ref: 'PollResponses' },
     ],
-    statusId: { type: String, required: true, default: null, ref: 'status' },
-    blockedById: { type: String, required: false, default: '', ref: 'users' },
+    statusId: [{ type: String, required: true, default: [], ref: 'status' }],
+    blockedById: { type: String, required: false, default: null, ref: 'users' },
     blockedAt: { type: Date, required: false, default: null },
     createdAt: { type: Date, required: true, default: null },
 });

@@ -14,7 +14,7 @@ export interface IUser extends Document {
     groupRoleIds: string[];
     addressIds: string[];
     pollResponseIds: string[];
-    statusId: string;
+    statusId: string[];
     blockedById: string;
     blockedAt: Date;
     createdAt: Date;
@@ -286,7 +286,7 @@ export interface IConfigEvents extends Document {
 
 //!IUserLogin
 export interface IUserLogin {
-    username: string;
+    email: string;
     password: string;
 }
 
