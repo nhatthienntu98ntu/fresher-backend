@@ -6,10 +6,10 @@ import { tokenExpiresIn } from '../config';
 import * as bcrypt from 'bcrypt';
 import userModel from '../models/user.model';
 
-export const loginUserService = async (userLogin: IUserLogin) => {
+export const signinUserService = async (userLogin: IUserLogin) => {
     const user = await UserModel.findOne({
         email: userLogin.email,
-    }).populate([{ path: 'groupRoleIds' }]);
+    }).populate([{ path: 'grouproleIds' }]);
 
     if (!user) {
         throw new Error(`User not exist! ${userLogin.email}`);

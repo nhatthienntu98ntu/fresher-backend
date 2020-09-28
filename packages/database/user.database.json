@@ -7,10 +7,10 @@
     "avatar": "avatar 1",
     "gender": true,
     "birthday": "04/07/1998",
-    "phones": ["0166", "0266", "0366" ],
+    "phones": ["0166"],
     "descriptionBlocked": "Chua co ly do",
-    "groupRoleIds": ["1", "2", "3"],
-    "addressIds":["add1", "add2", "add3"],
+    "groupRoleIds": ["1"],
+    "addressIds":["add1"],
     "pollResponseIds": [],
     "statusId": "5f6d5881012f542b9a92f0c8",
     "blockedById": ""

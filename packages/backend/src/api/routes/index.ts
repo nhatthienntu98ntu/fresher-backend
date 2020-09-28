@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import AuthRoute from './auth.route';
 import UserRoute from './user.route';
-import StatusRouter from './status.router';
+import StatusRouter from './status.route';
 import handleNotFound from '../../helpers/handleNotFound.helper';
 
 const router = Router();

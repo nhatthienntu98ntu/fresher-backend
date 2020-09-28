@@ -1,7 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
-import * as bcrypt from 'bcrypt';
 import { IUser, IUserLogin } from '../../interfaces';
-import UserModel from '../../models/user.model';
 // import { generateToken } from '../../utils/generateToken';
 import { UserService } from '../../services';
 
@@ -22,7 +20,7 @@ export const getAllUserController = async (
         });
 };
 
-export const loginUserController = (
+export const signinUserController = (
     req: Request,
     res: Response,
     next: NextFunction
@@ -31,7 +29,7 @@ export const loginUserController = (
         email: req.body.email,
         password: req.body.password,
     };
-    UserService.loginUserService(userLogin)
+    UserService.signinUserService(userLogin)
         .then(result => {
             res.status(200).json({
                 message: 'Login success',
@@ -95,12 +93,7 @@ export const signupUserController = async (
         gender: req.body.gender,
         birthday: req.body.birthday,
         phones: req.body.phones,
-        descriptionBlocked: req.body.descriptionBlocked,
-        groupRoleIds: req.body.groupRoleIds,
         addressIds: req.body.addressIds,
-        pollResponseIds: req.body.pollResponseIds,
-        statusId: req.body.statusId,
-        blockedById: req.body.blockedById,
         createdAt: new Date(),
     } as IUser;
 
@@ -142,7 +135,6 @@ export const updateUserController = async (
 ) => {
     const user = {
         _id: req.body._id,
-        email: req.body.email,
         password: req.body.password,
         firstName: req.body.firstName,
         lastName: req.body.lastName,
@@ -155,7 +147,6 @@ export const updateUserController = async (
         addressIds: req.body.addressIds,
         pollResponseIds: req.body.pollResponseIds,
         statusId: req.body.statusId,
-        blockedById: req.body.blockedById,
     } as IUser;
 
     await UserService.updateUserService(user)

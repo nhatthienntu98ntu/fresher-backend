@@ -6,13 +6,16 @@ import { generateToken } from '../../utils/generateToken';
 import { Use } from '../../validations';
 
 const router = Router();
-
+//*signin User
 router.post(
-    '/signin', // AuthMiddleware.checkToken,
+    '/signin',
+    Use.signinUserValidator,
+    // AuthMiddleware.checkToken,
     // AuthMiddleware.checkPermission(['Read']),
-    UserController.loginUserController
+    UserController.signinUserController
 );
 
+//*signup User
 router.post(
     '/signup',
     Use.signupUserValidator,
@@ -21,6 +24,7 @@ router.post(
     UserController.signupUserController
 );
 
+//*get All User
 router.get(
     '/',
     // AuthMiddleware.checkToken,
@@ -28,6 +32,7 @@ router.get(
     UserController.getAllUserController
 );
 
+//*get User bY Id
 router.get(
     '/:_id',
     // AuthMiddleware.checkToken,
@@ -35,13 +40,16 @@ router.get(
     UserController.getOneUserController
 );
 
+//*update User
 router.put(
     '/update',
+    Use.updateUserValidator,
     // AuthMiddleware.checkToken,
     // AuthMiddleware.checkPermission(['Create']),
     UserController.updateUserController
 );
 
+//*sidable User
 router.put(
     '/disable/:_id',
     // AuthMiddleware.checkToken,
