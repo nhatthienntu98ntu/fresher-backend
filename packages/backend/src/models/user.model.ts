@@ -15,6 +15,7 @@ const userSchema = new Schema({
     avatar: { type: String, required: true, default: null },
     gender: { type: Boolean, required: true, default: null },
     birthday: { type: Date, required: true, default: null },
+    isDelete: { type: Boolean, required: false, default: false },
     phones: [{ type: String, required: true, default: [] }],
     descriptionBlocked: { type: String, required: true, default: null },
     groupRoleIds: [

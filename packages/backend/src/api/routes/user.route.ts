@@ -3,6 +3,7 @@ import { AuthMiddleware } from '../../middlewares';
 import userModel from '../../models/user.model';
 import { UserController } from '../controllers';
 import { generateToken } from '../../utils/generateToken';
+import { Use } from '../../validations';
 
 const router = Router();
 
@@ -14,6 +15,7 @@ router.post(
 
 router.post(
     '/signup',
+    Use.signupUserValidator,
     // AuthMiddleware.checkToken,
     // AuthMiddleware.checkPermission(['Create']),
     UserController.signupUserController
@@ -27,7 +29,7 @@ router.get(
 );
 
 router.get(
-    '/:id',
+    '/:_id',
     // AuthMiddleware.checkToken,
     // AuthMiddleware.checkPermission(['Read']),
     UserController.getOneUserController
@@ -40,8 +42,8 @@ router.put(
     UserController.updateUserController
 );
 
-router.post(
-    '/disable/:id',
+router.put(
+    '/disable/:_id',
     // AuthMiddleware.checkToken,
     // AuthMiddleware.checkPermission(['Disable']),
     UserController.disableUserController

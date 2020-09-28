@@ -15,6 +15,7 @@ export interface IUser extends Document {
     addressIds: string[];
     pollResponseIds: string[];
     statusId: string[];
+    isDelete: boolean;
     blockedById: string;
     blockedAt: Date;
     createdAt: Date;

@@ -22,7 +22,7 @@ export const getAllUserController = async (
         });
 };
 
-export const loginUserController = async (
+export const loginUserController = (
     req: Request,
     res: Response,
     next: NextFunction
@@ -31,7 +31,7 @@ export const loginUserController = async (
         email: req.body.email,
         password: req.body.password,
     };
-    await UserService.loginUserService(userLogin)
+    UserService.loginUserService(userLogin)
         .then(result => {
             res.status(200).json({
                 message: 'Login success',
@@ -86,74 +86,6 @@ export const signupUserController = async (
     res: Response,
     next: NextFunction
 ) => {
-    UserModel.find({ email: req.body.email })
-        .exec()
-        .then(user => {
-            if (user.length >= 1) {
-                return res.status(409).json({
-                    message: 'Email exists',
-                });
-            } else {
-                bcrypt.hash(req.body.password, 10, (err, hash) => {
-                    if (err) {
-                        next(err);
-                    } else {
-                        const user = {
-                            email: req.body.email,
-                            password: hash,
-                            firstName: req.body.firstName,
-                            lastName: req.body.lastName,
-                            avatar: req.body.avatar,
-                            gender: req.body.gender,
-                            birthday: req.body.birthday,
-                            phones: req.body.phones,
-                            descriptionBlocked: req.body.descriptionBlocked,
-                            groupRoleIds: req.body.groupRoleIds,
-                            addressIds: req.body.addressIds,
-                            pollResponseIds: req.body.pollResponseIds,
-                            statusId: req.body.statusId,
-                            blockedById: req.body.blockedById,
-                            createdAt: new Date(),
-                        } as IUser;
-                        UserModel.create(user)
-                            .then(() => {
-                                return res.status(201).json({
-                                    message: 'User create success',
-                                });
-                            })
-                            .catch(err => {
-                                next(err);
-                            });
-                    }
-                });
-            }
-        });
-};
-
-export const getOneUserController = async (
-    req: Request,
-    res: Response,
-    next: NextFunction
-) => {
-    const id: String = req.params.id;
-    UserModel.findById(id)
-        .populate('statusId')
-        .exec(function(err, data) {
-            if (err) {
-                next(err);
-            }
-            if (data) {
-                return res.status(200).json(data);
-            }
-        });
-};
-
-//*Edit One User
-export const updateUserController = async (
-    req: Request,
-    res: Response,
-    next: NextFunction
-) => {
     const user = {
         email: req.body.email,
         password: req.body.password,
@@ -169,18 +101,69 @@ export const updateUserController = async (
         pollResponseIds: req.body.pollResponseIds,
         statusId: req.body.statusId,
         blockedById: req.body.blockedById,
+        createdAt: new Date(),
     } as IUser;
-    await UserModel.updateOne(
-        { _id: req.body._id },
-        {
-            $set: { ...user },
-        },
-        {
-            new: true,
-        }
-    )
+
+    await UserService.signupUserService(user)
+        .then(response => {
+            res.status(200).json({
+                message: 'Add user successfully',
+                Response: response,
+            });
+        })
+        .catch(err => {
+            next(err);
+        });
+};
+
+export const getOneUserController = async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+) => {
+    const _id: String = req.params._id;
+    await UserService.getOneUserService(_id)
+        .then(user => {
+            res.status(200).json({
+                message: 'Requet successfully',
+                Response: user,
+            });
+        })
+        .catch(err => {
+            next(err);
+        });
+};
+
+//*Edit One User
+export const updateUserController = async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+) => {
+    const user = {
+        _id: req.body._id,
+        email: req.body.email,
+        password: req.body.password,
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        avatar: req.body.avatar,
+        gender: req.body.gender,
+        birthday: req.body.birthday,
+        phones: req.body.phones,
+        descriptionBlocked: req.body.descriptionBlocked,
+        groupRoleIds: req.body.groupRoleIds,
+        addressIds: req.body.addressIds,
+        pollResponseIds: req.body.pollResponseIds,
+        statusId: req.body.statusId,
+        blockedById: req.body.blockedById,
+    } as IUser;
+
+    await UserService.updateUserService(user)
         .then(result => {
-            return res.status(200).json(result);
+            res.status(200).json({
+                message: 'Update successfully',
+                Response: result,
+            });
         })
         .catch(err => {
             next(err);
@@ -192,9 +175,16 @@ export const disableUserController = async (
     res: Response,
     next: NextFunction
 ) => {
-    try {
-        return res.status(200).json({ message: 'Success' });
-    } catch (error) {
-        next(error);
-    }
+    const _id = req.params._id;
+
+    await UserService.disableUserService(_id)
+        .then(result => {
+            res.status(200).json({
+                message: 'Disable successfully',
+                Response: result,
+            });
+        })
+        .catch(err => {
+            next(err);
+        });
 };
