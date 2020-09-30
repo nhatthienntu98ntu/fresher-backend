@@ -1,42 +1,20 @@
 import { json } from 'body-parser';
 import { NextFunction, Request, Response } from 'express';
 import { IStatus } from '../../interfaces';
-import StatusModel from '../../models/status.model';
+import statusModel from '../../models/status.model';
+import { StatusService } from '../../services';
 
 export const getAllStatusController = async (
     req: Request,
     res: Response,
     next: NextFunction
 ) => {
-    StatusModel.find({})
-        .then(result => {
-            return res.status(200).json({
-                message: 'Request success',
-                request: result,
-            });
-        })
-        .catch(err => {
-            next(err);
+    StatusService.getAllStatus().then(result => {
+        res.status(200).json({
+            message: 'Request successfully',
+            Response: result,
         });
-};
-
-export const getStatusByIdController = async (
-    req: Request,
-    res: Response,
-    next: NextFunction
-) => {
-    const _id: String = req.params._id;
-    StatusModel.findById(_id)
-        .exec()
-        .then(result => {
-            return res.status(200).json({
-                message: 'Request success',
-                status: result,
-            });
-        })
-        .catch(err => {
-            next(err);
-        });
+    });
 };
 
 export const addStatusController = async (
@@ -48,11 +26,12 @@ export const addStatusController = async (
         name: req.body.name,
         description: req.body.description,
     } as IStatus;
-    StatusModel.create(status)
+
+    StatusService.addStatusService(status)
         .then(result => {
-            return res.status(200).json({
-                message: 'Added successfully',
-                status: result,
+            res.status(200).json({
+                message: 'Add successfully',
+                Response: result,
             });
         })
         .catch(err => {
@@ -66,15 +45,11 @@ export const updateStatusController = async (
     next: NextFunction
 ) => {
     const status = {
+        _id: req.params._id,
         name: req.body.name,
         description: req.body.description,
     } as IStatus;
-    StatusModel.updateOne(
-        { _id: req.body._id },
-        { $set: status },
-        { new: true }
-    )
-        .exec()
+    StatusService.updateStatusService(status)
         .then(result => {
             return res.status(200).json({
                 message: 'Update successful',
@@ -91,15 +66,10 @@ export const deleteStatusController = async (
     res: Response,
     next: NextFunction
 ) => {
-    StatusModel.deleteOne({ _id: req.body._id })
-        .exec()
-        .then(result => {
-            return res.status(200).json({
-                message: 'Deleted successfully',
-                Result: result,
-            });
-        })
-        .catch(err => {
-            next(err);
+    StatusService.deleteStatusService(req.params._id).then(result => {
+        res.status(200).json({
+            message: 'Delete succesfully',
+            Response: result,
         });
+    });
 };

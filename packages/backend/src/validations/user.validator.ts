@@ -19,7 +19,7 @@ export const signupUserValidator = celebrate({
         avatar: Joi.string(),
         gender: Joi.boolean().required(),
         birthday: Joi.date().required(),
-        statusId: Joi.string().required(),
+        // statusId: Joi.string().required(),
         phones: Joi.array()
             .items(
                 Joi.string()
@@ -48,7 +48,6 @@ export const signinUserValidator = celebrate({
 
 export const updateUserValidator = celebrate({
     [Segments.BODY]: Joi.object({
-        _id: Joi.string().required(),
         email: Joi.string()
             .min(8)
             .max(255),
@@ -70,5 +69,8 @@ export const updateUserValidator = celebrate({
         pollResponseIds: Joi.array().items(Joi.string()),
         statusId: Joi.string(),
         addressIds: Joi.array().items(Joi.string()),
+    }),
+    [Segments.PARAMS]: Joi.object({
+        _id: Joi.string().required(),
     }),
 });

@@ -1,10 +1,10 @@
 import ms from 'ms';
-import { ITokenDecode, IUser, IUserLogin } from '../interfaces';
+import { ITokenDecode, IUser, IUserDelete, IUserLogin } from '../interfaces';
 import UserModel from '../models/user.model';
 import { generateToken } from '../utils/generateToken';
 import { tokenExpiresIn } from '../config';
+import statusModel from '../models/status.model';
 import * as bcrypt from 'bcrypt';
-import userModel from '../models/user.model';
 
 export const signinUserService = async (userLogin: IUserLogin) => {
     const user = await UserModel.findOne({
@@ -40,7 +40,7 @@ export const getAllUserService = async () => {
         { path: 'statusId' },
         { path: 'blockedById' },
         // { path: 'addressIds' },
-        // { path: 'groupRoleIds' },
+        { path: 'groupRoleIds' },
         // { path: 'pollResponseIds' },
     ]);
     return users;
@@ -70,30 +70,42 @@ export const getOneUserService = async (_id: String) => {
 };
 
 export const updateUserService = async (userUpdate: IUser) => {
-    const user = await userModel.findById(userUpdate._id);
+    const user = await UserModel.findById(userUpdate._id);
     if (!user) {
         throw new Error('User not exist');
     }
 
-    userUpdate.password = await bcrypt.hash(userUpdate.password, 10);
+    if (userUpdate.password) {
+        userUpdate.password = await bcrypt.hash(userUpdate.password, 10);
+    }
 
-    return await userModel.updateOne(
+    return await UserModel.updateOne(
         { _id: userUpdate._id },
         { $set: { ...userUpdate } },
         { new: true }
     );
 };
 
-export const disableUserService = async (_id: String) => {
-    const user = await UserModel.findById(_id);
+export const disableUserService = async (userDelete: IUserDelete) => {
+    const user = await UserModel.findById(userDelete._idUser);
 
     if (!user) {
         throw new Error('User not exist');
     }
 
+    if (user.isDelete) {
+        throw new Error('User not exist');
+    }
+
     return await UserModel.updateOne(
-        { _id: _id },
-        { $set: { isDelete: true } },
+        { _id: userDelete._idUser },
+        {
+            $set: {
+                blockedById: userDelete._idUserBlock,
+                isDelete: true,
+                deletedAt: new Date(),
+            },
+        },
         { new: true }
     );
 };

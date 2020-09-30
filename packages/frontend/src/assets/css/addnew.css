@@ -1,0 +1,18 @@
+.form-addplace {
+  width: 100%;
+}
+
+div#checkboxes-4 {
+  display: flex;
+  justify-content: space-between;
+}
+
+form.addplace {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.openingtime,
+.closingtime {
+  width: calc(50% - 10px);
+}

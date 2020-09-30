@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
-import { IUser, IUserLogin } from '../../interfaces';
+import { IUser, IUserDelete, IUserLogin } from '../../interfaces';
 // import { generateToken } from '../../utils/generateToken';
 import { UserService } from '../../services';
 
@@ -134,18 +134,18 @@ export const updateUserController = async (
     next: NextFunction
 ) => {
     const user = {
-        _id: req.body._id,
-        password: req.body.password,
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
-        avatar: req.body.avatar,
-        gender: req.body.gender,
-        birthday: req.body.birthday,
-        phones: req.body.phones,
-        descriptionBlocked: req.body.descriptionBlocked,
-        groupRoleIds: req.body.groupRoleIds,
-        addressIds: req.body.addressIds,
-        pollResponseIds: req.body.pollResponseIds,
+        _id: req.params._id,
+        // password: req.body.password,
+        // firstName: req.body.firstName,
+        // lastName: req.body.lastName,
+        // avatar: req.body.avatar,
+        // gender: req.body.gender,
+        // birthday: req.body.birthday,
+        // phones: req.body.phones,
+        // descriptionBlocked: req.body.descriptionBlocked,
+        // groupRoleIds: req.body.groupRoleIds,
+        // addressIds: req.body.addressIds,
+        // pollResponseIds: req.body.pollResponseIds,
         statusId: req.body.statusId,
     } as IUser;
 
@@ -166,12 +166,15 @@ export const disableUserController = async (
     res: Response,
     next: NextFunction
 ) => {
-    const _id = req.params._id;
+    const userDelete = {
+        _idUser: req.params._idUser,
+        _idUserBlock: req.params._idUserBlock,
+    } as IUserDelete;
 
-    await UserService.disableUserService(_id)
+    await UserService.disableUserService(userDelete)
         .then(result => {
             res.status(200).json({
-                message: 'Disable successfully',
+                message: 'Delete successfully',
                 Response: result,
             });
         })

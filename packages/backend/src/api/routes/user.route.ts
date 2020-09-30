@@ -42,7 +42,7 @@ router.get(
 
 //*update User
 router.put(
-    '/update',
+    '/update/:_id',
     Use.updateUserValidator,
     // AuthMiddleware.checkToken,
     // AuthMiddleware.checkPermission(['Create']),
@@ -50,8 +50,8 @@ router.put(
 );
 
 //*sidable User
-router.put(
-    '/disable/:_id',
+router.delete(
+    '/delete/:_idUser/:_idUserBlock',
     // AuthMiddleware.checkToken,
     // AuthMiddleware.checkPermission(['Disable']),
     UserController.disableUserController

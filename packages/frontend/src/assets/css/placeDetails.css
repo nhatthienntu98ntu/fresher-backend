@@ -1,0 +1,9 @@
+.input-containerr {
+  display: flex;
+  justify-content: space-between;
+}
+
+.tooltip-inner {
+  margin-left: 24px;
+  background-color: #2c4893;
+}

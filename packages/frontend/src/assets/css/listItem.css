@@ -1,0 +1,14 @@
+.flex {
+  display: flex;
+
+}
+
+.control {
+  display: flex;
+  justify-content: space-between;
+}
+
+.button-submit.newItem {
+  border-radius: 5px;
+  padding: 0.7em;
+}

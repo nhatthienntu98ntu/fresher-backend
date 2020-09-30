@@ -1,0 +1,95 @@
+.button-submit {
+  display: block;
+  width: 100%;
+  background-color: #233975;
+  color: white;
+  font-weight: 700;
+  padding: 1rem;
+  border-radius: 8px;
+  border: none;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+
+.register {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.input-container.province,
+.input-container.city,
+.input-container.address,
+.input-container.phone,
+.input-container.gender {
+  margin-top: 1rem;
+}
+
+.input-container.phone {
+  transform: translateY(3px);
+}
+
+svg.svg-inline--fa.fa-arrow-left.fa-w-14 {
+  font-size: 12px;
+}
+
+.center {
+  text-align: center;
+}
+
+.form-input {
+  display: flex;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+
+.left-regiser,
+.right-register {
+  width: calc(50% - 10px);
+}
+
+.password_previous,
+.password_confirm {
+  width: calc(50% - 3px);
+}
+
+.fullname {
+  display: flex;
+  justify-content: space-between;
+}
+
+.input-container.firstname,
+.input-container.lastname {
+  width: calc(50% - 3px);
+}
+
+select {
+  display: inline-block;
+  width: 100%;
+  box-sizing: border-box;
+  /* border-radius: 8px; */
+  padding: 13.9px;
+  margin-bottom: 1.25rem;
+  background-color: #fff;
+  border: 1px solid #c4c4c4;
+  cursor: pointer;
+}
+
+/* #datepicker {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 8px;
+    border: 1px solid #c4c4c4;
+    padding: 13.9px;
+    margin-bottom: 1.25rem;
+    font-size: 0.875rem;
+} */
+
+.back {
+  float: right;
+  margin: 1em;
+  color: black;
+  font-size: 14px;
+}

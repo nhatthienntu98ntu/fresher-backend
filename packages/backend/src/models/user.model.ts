@@ -29,6 +29,7 @@ const userSchema = new Schema({
     ],
     statusId: { type: String, required: false, default: null, ref: 'status' },
     blockedById: { type: String, required: false, default: null, ref: 'users' },
+    deletedAt: { type: Date, required: false, default: null },
     blockedAt: { type: Date, required: false, default: null },
     createdAt: { type: Date, required: true, default: new Date() },
 });
